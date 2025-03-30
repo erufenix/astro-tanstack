@@ -1,10 +1,13 @@
 import react from '@astrojs/react'
-import vercel from '@astrojs/vercel'
 import { TanStackRouterVite } from '@tanstack/router-plugin/vite'
 import { defineConfig } from 'astro/config'
 
+import node from '@astrojs/node'
+
 export default defineConfig({
-	adapter: vercel({ includeFiles: ['./db.sqlite'] }),
+	adapter: node({
+		mode: 'standalone',
+	}),
 	build: {
 		format: 'file',
 	},

@@ -1,16 +1,16 @@
+import path from 'node:path'
 import { betterAuth } from 'better-auth'
 import { anonymous } from 'better-auth/plugins'
 import Database from 'better-sqlite3'
-import { origin } from './origin'
 
 export const auth = betterAuth({
-	database: new Database('../../db.sqlite'),
-	baseURL: origin,
+	database: new Database(path.join(process.cwd(), 'db.sqlite')),
+	baseURL: 'http://localhost:4321',
 	secret: 'secret',
-	trustedOrigins: [origin],
+	trustedOrigins: ['http://localhost:4321'],
 	plugins: [
 		anonymous({
-			emailDomainName: import.meta.env.VERCEL_URL,
+			emailDomainName: 'localhost',
 		}),
 	],
 })

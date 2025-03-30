@@ -4,7 +4,7 @@ import { handleRequest } from './_app/handleRequest'
 import RootLayout from './_layout.astro'
 
 export async function getStaticPaths() {
-  return [{ params: { ssg: 'ssg' } }]
+  return [{ params: { ssg: '' } }, { params: { ssg: 'ssg' } }]
 }
 
 const { getServerRouter, scriptHtml } = await handleRequest(Astro.request)

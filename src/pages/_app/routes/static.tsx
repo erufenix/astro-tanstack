@@ -3,7 +3,7 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { productQueries } from '~/pages/_app/queries'
 
-export const Route = createFileRoute('/_static/static')({
+export const Route = createFileRoute('/static')({
 	loader: async ({ context: { queryClient } }) => {
 		await queryClient.ensureQueryData(productQueries.onBuild())
 	},

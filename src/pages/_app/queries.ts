@@ -2,7 +2,6 @@ import { actions } from 'astro:actions'
 import { queryOptions } from '@tanstack/react-query'
 import { createAuthClient } from 'better-auth/client'
 import { anonymousClient } from 'better-auth/client/plugins'
-import { origin } from '~/lib/origin'
 
 const queryKeys = {
 	auth: () => ['auth'] as const,
@@ -10,7 +9,7 @@ const queryKeys = {
 }
 
 export const authClient = createAuthClient({
-	baseURL: origin,
+	baseURL: 'http://localhost:4321',
 	plugins: [anonymousClient()],
 })
 

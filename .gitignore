@@ -24,9 +24,6 @@ build
 **/*.min.*
 .astro
 
-# Vercel
-.vercel
-
 # Tooling
 .vscode
 .eslintcache
