@@ -1,41 +1,39 @@
 import { actions } from 'astro:actions'
 import { queryOptions } from '@tanstack/react-query'
-import { createAuthClient } from 'better-auth/client'
-import { anonymousClient } from 'better-auth/client/plugins'
 
 const queryKeys = {
 	auth: () => ['auth'] as const,
-	products: () => ['products'] as const,
+	data: () => ['data'] as const,
 }
 
-export const authClient = createAuthClient({
-	baseURL: 'http://localhost:4321',
-	plugins: [anonymousClient()],
-})
+export const authClient = {
+	signIn: async () => {
+		const { data } = await actions.signIn()
+		return data!
+	},
+	signOut: async () => {
+		const { data } = await actions.signOut()
+		return data!
+	},
+}
 
 export const authQueries = {
 	get: () =>
 		queryOptions({
 			queryKey: [...queryKeys.auth()],
 			queryFn: async () => {
-				const { data, error } = await authClient.getSession()
-				if (error) {
-					throw new Error('Authentication failed. Please try again.')
-				}
-				if (data) {
-					return data
-				}
-				return { user: null, session: null }
+				const { data } = await actions.getSession()
+				return data!
 			},
 		}),
 
 	invalidate: () => queryOptions({ queryKey: [...queryKeys.auth()] }),
 }
 
-export const productQueries = {
+export const dataQueries = {
 	onDemand: () =>
 		queryOptions({
-			queryKey: [...queryKeys.products()],
+			queryKey: [...queryKeys.data()],
 			queryFn: async () => {
 				if (import.meta.env.SSR) {
 					return {
@@ -46,7 +44,7 @@ export const productQueries = {
 						],
 					}
 				} else {
-					const { data } = await actions.getProducts()
+					const { data } = await actions.getData()
 					return data
 				}
 			},
@@ -55,7 +53,7 @@ export const productQueries = {
 
 	onBuild: () =>
 		queryOptions({
-			queryKey: [...queryKeys.products()],
+			queryKey: [...queryKeys.data()],
 			queryFn: async () => {
 				if (import.meta.env.SSR) {
 					return {
@@ -66,12 +64,12 @@ export const productQueries = {
 						],
 					}
 				} else {
-					const { data } = await actions.getProducts()
+					const { data } = await actions.getData()
 					return data
 				}
 			},
 			staleTime: 60_000,
 		}),
 
-	invalidate: () => queryOptions({ queryKey: [...queryKeys.products()] }),
+	invalidate: () => queryOptions({ queryKey: [...queryKeys.data()] }),
 }

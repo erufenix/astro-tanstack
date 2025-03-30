@@ -1,18 +1,18 @@
 import { useQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
 
-import { productQueries } from '~/pages/_app/queries'
+import { dataQueries } from '~/pages/_app/queries'
 
 export const Route = createFileRoute('/static')({
 	loader: async ({ context: { queryClient } }) => {
-		await queryClient.ensureQueryData(productQueries.onBuild())
+		await queryClient.ensureQueryData(dataQueries.onBuild())
 	},
 
 	component: Component,
 })
 
 function Component() {
-	const { data } = useQuery(productQueries.onBuild())
+	const { data } = useQuery(dataQueries.onBuild())
 
 	return (
 		<div>

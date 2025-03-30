@@ -1,18 +1,18 @@
 import { useQuery } from '@tanstack/react-query'
 import { createFileRoute, useRouter } from '@tanstack/react-router'
 
-import { productQueries } from '~/pages/_app/queries'
+import { dataQueries } from '~/pages/_app/queries'
 
 export const Route = createFileRoute('/ssr')({
 	loader: async ({ context: { queryClient } }) => {
-		await queryClient.ensureQueryData(productQueries.onDemand())
+		await queryClient.ensureQueryData(dataQueries.onDemand())
 	},
 
 	component: Component,
 })
 
 function Component() {
-	const { data } = useQuery(productQueries.onDemand())
+	const { data } = useQuery(dataQueries.onDemand())
 	const router = useRouter()
 	const queryClient = router.options.context.queryClient
 
@@ -23,7 +23,7 @@ function Component() {
 			<button
 				className='px-4 py-2 rounded-md bg-blue-500 text-white'
 				onClick={async () => {
-					await queryClient.invalidateQueries(productQueries.invalidate())
+					await queryClient.invalidateQueries(dataQueries.invalidate())
 				}}
 				type='button'
 			>

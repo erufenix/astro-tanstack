@@ -2,12 +2,10 @@ import react from '@astrojs/react'
 import { TanStackRouterVite } from '@tanstack/router-plugin/vite'
 import { defineConfig } from 'astro/config'
 
-import node from '@astrojs/node'
+import cloudflare from '@astrojs/cloudflare'
 
 export default defineConfig({
-	adapter: node({
-		mode: 'standalone',
-	}),
+	adapter: cloudflare(),
 	build: {
 		format: 'file',
 	},

@@ -9,13 +9,11 @@ export const Route = createFileRoute('/_auth/profile')({
 
 function Component() {
 	const router = useRouter()
-	const queryClient = router.options.context.queryClient
-	const { data, status, error } = useQuery(authQueries.get())
+	const { data } = useQuery(authQueries.get())
 
 	return (
 		<div>
-			<p>Welcome {data?.user?.name},</p>
-			<p>You are logged in with {data?.user?.email}</p>
+			<p>Welcome {data?.user}</p>
 			<br />
 			<button
 				className='px-4 py-2 rounded-md bg-blue-500 text-white'

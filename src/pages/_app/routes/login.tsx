@@ -17,14 +17,13 @@ export const Route = createFileRoute('/login')({
 
 function Component() {
 	const router = useRouter()
-	const queryClient = router.options.context.queryClient
 
 	return (
 		<div>
 			<button
 				className='px-4 py-2 rounded-md bg-blue-500 text-white'
 				onClick={async () => {
-					await authClient.signIn.anonymous()
+					await authClient.signIn()
 					await router.invalidate()
 				}}
 				type='button'
