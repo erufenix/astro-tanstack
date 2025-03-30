@@ -35,5 +35,12 @@ export default defineConfig({
 				quoteStyle: 'single',
 			}),
 		],
+		resolve: {
+			alias: {
+				...(process.env.NODE_ENV === 'production' && {
+					'react-dom/server': 'react-dom/server.edge',
+				}),
+			},
+		},
 	},
 })
