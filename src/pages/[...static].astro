@@ -1,0 +1,15 @@
+---
+import { AppEntry } from './_app/entry'
+import { handleRequest } from './_app/handleRequest'
+import RootLayout from './_layout.astro'
+
+export async function getStaticPaths() {
+  return [{ params: { static: 'static' } }]
+}
+
+const { getServerRouter } = await handleRequest(Astro.request)
+---
+
+<RootLayout>
+  <AppEntry getServerRouter={getServerRouter} />
+</RootLayout>

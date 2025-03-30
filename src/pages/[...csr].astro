@@ -1,0 +1,15 @@
+---
+import { AppEntry } from './_app/entry'
+import RootLayout from './_layout.astro'
+
+export async function getStaticPaths() {
+  return [
+    { params: { csr: 'login' } },
+    { params: { csr: 'profile' } },
+  ]
+}
+---
+
+<RootLayout>
+  <AppEntry client:only='react' clientOnly={true} />
+</RootLayout>

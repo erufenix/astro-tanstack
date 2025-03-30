@@ -1,0 +1,14 @@
+---
+import { AppEntry } from './_app/entry'
+import { handleRequest } from './_app/handleRequest'
+import RootLayout from './_layout.astro'
+
+export const prerender = false
+
+const { getServerRouter, scriptHtml } = await handleRequest(Astro.request)
+---
+
+<RootLayout>
+  <AppEntry client:load getServerRouter={getServerRouter} />
+  <Fragment set:html={scriptHtml} />
+</RootLayout>
