@@ -48,13 +48,20 @@ export const dataQueries = {
 			queryFn: async () => {
 				if (import.meta.env.SSR) {
 					const res = await GET(astroContext!)
-					return await res.json()
+					return (await res.json()) as {
+						timestamp: number
+						data: Array<{ id: number; name: string }>
+					}
 				} else {
 					const res = await fetch('/api/data')
-					return await res.json()
+					return (await res.json()) as {
+						timestamp: number
+						data: Array<{ id: number; name: string }>
+					}
 				}
 			},
-			staleTime: 60_000,
+			// longer stale time for pre-rendered pages, otherwise it will be immediately stale on the client
+			staleTime: 24 * 60 * 60 * 1_000,
 		}),
 
 	ssr: (astroContext?: AstroGlobal) =>
