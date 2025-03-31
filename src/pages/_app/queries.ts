@@ -1,6 +1,7 @@
 import { actions } from 'astro:actions'
 import { queryOptions } from '@tanstack/react-query'
 import type { AstroGlobal } from 'astro'
+import { GET } from '~/pages/api/data'
 
 const queryKeys = {
 	auth: () => ['auth'] as const,
@@ -41,13 +42,13 @@ export const authQueries = {
 }
 
 export const dataQueries = {
-	onDemand: (astroContext?: AstroGlobal) =>
+	prerender: (astroContext?: AstroGlobal) =>
 		queryOptions({
 			queryKey: [...queryKeys.data()],
 			queryFn: async () => {
 				if (import.meta.env.SSR) {
-					const { data } = await astroContext!.callAction(actions.getData, {})
-					return data!
+					const res = await GET(astroContext!)
+					return await res.json()
 				} else {
 					const { data } = await actions.getData()
 					return data!
@@ -56,7 +57,7 @@ export const dataQueries = {
 			staleTime: 60_000,
 		}),
 
-	onBuild: (astroContext?: AstroGlobal) =>
+	ssr: (astroContext?: AstroGlobal) =>
 		queryOptions({
 			queryKey: [...queryKeys.data()],
 			queryFn: async () => {

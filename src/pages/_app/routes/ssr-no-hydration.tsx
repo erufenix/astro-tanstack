@@ -5,14 +5,14 @@ import { dataQueries } from '~/pages/_app/queries'
 
 export const Route = createFileRoute('/ssr-no-hydration')({
 	loader: async ({ context: { astroContext, queryClient } }) => {
-		await queryClient.ensureQueryData(dataQueries.onDemand(astroContext))
+		await queryClient.ensureQueryData(dataQueries.ssr(astroContext))
 	},
 
 	component: Component,
 })
 
 function Component() {
-	const { data } = useQuery(dataQueries.onDemand())
+	const { data } = useQuery(dataQueries.ssr())
 
 	return (
 		<div>
