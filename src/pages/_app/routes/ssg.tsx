@@ -4,8 +4,8 @@ import { createFileRoute, useRouter } from '@tanstack/react-router'
 import { dataQueries } from '~/pages/_app/queries'
 
 export const Route = createFileRoute('/ssg')({
-	loader: async ({ context: { queryClient } }) => {
-		await queryClient.ensureQueryData(dataQueries.onBuild())
+	loader: async ({ context: { astroContext, queryClient } }) => {
+		await queryClient.ensureQueryData(dataQueries.onBuild(astroContext))
 	},
 
 	component: Component,
@@ -27,7 +27,7 @@ function Component() {
 				}}
 				type='button'
 			>
-				Refresh
+				Refetch data
 			</button>
 		</div>
 	)

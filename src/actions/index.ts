@@ -1,8 +1,37 @@
 import { defineAction } from 'astro:actions'
 
 export const server = {
+	getSession: defineAction({
+		handler: async (_, context) => {
+			const isLoggedIn = context.cookies.get('isLoggedIn')?.boolean() ?? false
+			return isLoggedIn ? { user: 'John' } : { user: null }
+		},
+	}),
+	signIn: defineAction({
+		handler: async (_, context) => {
+			context.cookies.set('isLoggedIn', 'true', {
+				expires: new Date(Date.now() + 60_000),
+				httpOnly: true,
+				path: '/',
+				sameSite: 'strict',
+				secure: import.meta.env.PROD,
+			})
+			return { success: true }
+		},
+	}),
+	signOut: defineAction({
+		handler: async (_, context) => {
+			context.cookies.delete('isLoggedIn', {
+				httpOnly: true,
+				path: '/',
+				sameSite: 'strict',
+				secure: import.meta.env.PROD,
+			})
+			return { success: true }
+		},
+	}),
 	getData: defineAction({
-		handler: async (input, context) => {
+		handler: async (_, context) => {
 			return {
 				timestamp: Date.now(),
 				data: [
@@ -10,29 +39,6 @@ export const server = {
 					{ id: 2, name: 'Product 2' },
 				],
 			}
-		},
-	}),
-	getSession: defineAction({
-		handler: async (input, context) => {
-			const isLoggedIn = context.cookies.get('isLoggedIn')?.boolean() ?? false
-			return isLoggedIn ? { user: 'John' } : { user: null }
-		},
-	}),
-	signIn: defineAction({
-		handler: async (input, context) => {
-			context.cookies.set('isLoggedIn', 'true', {
-				sameSite: 'strict',
-				httpOnly: true,
-				secure: true,
-				expires: new Date(Date.now() + 60_000),
-			})
-			return { success: true }
-		},
-	}),
-	signOut: defineAction({
-		handler: async (input, context) => {
-			context.cookies.delete('isLoggedIn')
-			return { success: true }
 		},
 	}),
 }

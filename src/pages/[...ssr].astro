@@ -1,14 +1,30 @@
 ---
 import { AppEntry } from './_app/entry'
-import { handleRequest } from './_app/handleRequest'
+import { handleSsrRequest } from './_app/handleSsrRequest'
 import RootLayout from './_layout.astro'
 
 export const prerender = false
 
-const { getServerRouter, scriptHtml } = await handleRequest(Astro.request)
+const result = await handleSsrRequest(Astro)
+
+if (result instanceof Response) {
+  return result
+}
+
+const { getServerRouter, scriptHtml } = result
+
+const shouldNotHydrate = Astro.url.pathname.replace('.html', '').endsWith('-no-hydration')
 ---
 
 <RootLayout>
-  <AppEntry client:load getServerRouter={getServerRouter} />
-  <Fragment set:html={scriptHtml} />
+  {
+    shouldNotHydrate ? (
+      <AppEntry getServerRouter={getServerRouter} />
+    ) : (
+      <Fragment>
+        <AppEntry client:load getServerRouter={getServerRouter} />
+        <Fragment set:html={scriptHtml} />
+      </Fragment>
+    )
+  }
 </RootLayout>

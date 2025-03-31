@@ -4,14 +4,14 @@ import { createFileRoute, redirect, useRouter } from '@tanstack/react-router'
 import { authClient, authQueries } from '~/pages/_app/queries'
 import { tryCatch } from '~/pages/_app/try-catch'
 
-export const Route = createFileRoute('/login')({
+export const Route = createFileRoute('/login-ssr')({
 	beforeLoad: async ({ context: { astroContext, queryClient } }) => {
 		const { data } = await tryCatch(
 			queryClient.fetchQuery(authQueries.get(astroContext)),
 		)
 
 		if (data?.user) {
-			throw redirect({ to: '/profile' })
+			throw redirect({ to: '/profile-ssr' })
 		}
 	},
 

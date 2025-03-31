@@ -1,5 +1,6 @@
 import { actions } from 'astro:actions'
 import { queryOptions } from '@tanstack/react-query'
+import type { AstroGlobal } from 'astro'
 
 const queryKeys = {
 	auth: () => ['auth'] as const,
@@ -18,54 +19,53 @@ export const authClient = {
 }
 
 export const authQueries = {
-	get: () =>
+	get: (astroContext?: AstroGlobal) =>
 		queryOptions({
 			queryKey: [...queryKeys.auth()],
 			queryFn: async () => {
-				const { data } = await actions.getSession()
-				return data!
+				if (import.meta.env.SSR) {
+					const { data } = await astroContext!.callAction(
+						actions.getSession,
+						{},
+					)
+					return data!
+				} else {
+					const { data } = await actions.getSession()
+					return data!
+				}
 			},
+			staleTime: 10_000,
 		}),
 
 	invalidate: () => queryOptions({ queryKey: [...queryKeys.auth()] }),
 }
 
 export const dataQueries = {
-	onDemand: () =>
+	onDemand: (astroContext?: AstroGlobal) =>
 		queryOptions({
 			queryKey: [...queryKeys.data()],
 			queryFn: async () => {
 				if (import.meta.env.SSR) {
-					return {
-						timestamp: Date.now(),
-						data: [
-							{ id: 1, name: 'Product 1' },
-							{ id: 2, name: 'Product 2' },
-						],
-					}
+					const { data } = await astroContext!.callAction(actions.getData, {})
+					return data!
 				} else {
 					const { data } = await actions.getData()
-					return data
+					return data!
 				}
 			},
 			staleTime: 60_000,
 		}),
 
-	onBuild: () =>
+	onBuild: (astroContext?: AstroGlobal) =>
 		queryOptions({
 			queryKey: [...queryKeys.data()],
 			queryFn: async () => {
 				if (import.meta.env.SSR) {
-					return {
-						timestamp: Date.now(),
-						data: [
-							{ id: 1, name: 'Product 1' },
-							{ id: 2, name: 'Product 2' },
-						],
-					}
+					const { data } = await astroContext!.callAction(actions.getData, {})
+					return data!
 				} else {
 					const { data } = await actions.getData()
-					return data
+					return data!
 				}
 			},
 			staleTime: 60_000,

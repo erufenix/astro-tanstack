@@ -2,15 +2,16 @@ import { QueryClientProvider, dehydrate, hydrate } from '@tanstack/react-query'
 import { createRouter } from '@tanstack/react-router'
 import * as React from 'react'
 
+import type { AstroGlobal } from 'astro'
 import { createQueryClient } from './query-client'
 import { routeTree } from './routeTree.gen'
 
-export function createAppRouter() {
+export function createAppRouter(astroContext?: AstroGlobal) {
 	const queryClient = createQueryClient()
 
 	return createRouter({
 		routeTree,
-		context: { queryClient },
+		context: { astroContext, queryClient },
 
 		dehydrate: () => {
 			return {
