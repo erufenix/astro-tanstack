@@ -11,7 +11,7 @@ Build Single Page Application with Astro, TanStack Router and Query.
 - `src/_app/handle-ssr-request.ts` - load TanStack Router on the server
 - `src/_app/entry.tsx` - SPA entry point
 - `src/_app/routes` - SPA routes
-- `src/_app/queries` - data fetching with TanStack Query
+- `src/_app/queries` - server and client data fetching using Astro endpoints/actions (feat TanStack Query)
 
 ## Routes
 

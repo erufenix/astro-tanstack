@@ -50,8 +50,8 @@ export const dataQueries = {
 					const res = await GET(astroContext!)
 					return await res.json()
 				} else {
-					const { data } = await actions.getData()
-					return data!
+					const res = await fetch('/api/data')
+					return await res.json()
 				}
 			},
 			staleTime: 60_000,
