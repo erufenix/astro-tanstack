@@ -28,12 +28,12 @@ export async function handleSsrRequest(astroContext: AstroGlobal) {
 		return null
 	})
 
-	if (response) return response
+	if (response) return { response, getServerRouter, scriptHtml: '' }
 
 	// inject scripts for dehydrated router
-	const scriptHtml = await Promise.all(router.serverSsr!.injectedHtml).then(
-		(htmls) => htmls.join(''),
-	)
+	const scriptHtml = await Promise.all(
+		router.serverSsr?.injectedHtml ?? [],
+	).then((htmls) => htmls.join(''))
 
-	return { getServerRouter, scriptHtml }
+	return { response: null, getServerRouter, scriptHtml }
 }
