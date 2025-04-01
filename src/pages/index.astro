@@ -1,13 +1,6 @@
 ---
 import { AppEntry } from './_app/entry'
 import RootLayout from './_layout.astro'
-
-export async function getStaticPaths() {
-  return [
-    { params: { csr: 'csr/login' } },
-    { params: { csr: 'csr/profile' } },
-  ]
-}
 ---
 
 <RootLayout>

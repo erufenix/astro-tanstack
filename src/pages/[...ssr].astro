@@ -9,7 +9,9 @@ const { response, getServerRouter, scriptHtml } = await handleSsrRequest(Astro)
 
 if (response) return response
 
-const shouldNotHydrate = Astro.url.pathname.replace('.html', '').endsWith('-no-hydration')
+const shouldNotHydrate = Astro.url.pathname
+  .replace('.html', '')
+  .endsWith('/no-hydration')
 ---
 
 <RootLayout>

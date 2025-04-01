@@ -10,7 +10,7 @@ export const server = {
 	signIn: defineAction({
 		handler: async (_, context) => {
 			context.cookies.set('isLoggedIn', 'true', {
-				expires: new Date(Date.now() + 60_000),
+				maxAge: 600,
 				httpOnly: true,
 				path: '/',
 				sameSite: 'strict',

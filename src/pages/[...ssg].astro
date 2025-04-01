@@ -5,9 +5,8 @@ import RootLayout from './_layout.astro'
 
 export async function getStaticPaths() {
   return [
-    { params: { ssg: undefined } },
     { params: { ssg: 'ssg' } },
-    { params: { ssg: 'ssg-no-hydration' } },
+    { params: { ssg: 'ssg/no-hydration' } },
   ]
 }
 
@@ -16,7 +15,9 @@ const { response, getServerRouter, scriptHtml } = await handleSsrRequest(Astro)
 if (response) return response
 
 
-const shouldNotHydrate = Astro.url.pathname.replace('.html', '').endsWith('-no-hydration')
+const shouldNotHydrate = Astro.url.pathname
+  .replace('.html', '')
+  .endsWith('/no-hydration')
 ---
 
 <RootLayout>

@@ -3,7 +3,7 @@ import { createFileRoute, useRouter } from '@tanstack/react-router'
 
 import { authClient, authQueries } from '~/pages/_app/queries'
 
-export const Route = createFileRoute('/_auth-ssr/profile-ssr')({
+export const Route = createFileRoute('/_auth-csr/csr/profile')({
 	component: Component,
 })
 

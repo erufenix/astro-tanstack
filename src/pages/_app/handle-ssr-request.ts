@@ -8,6 +8,8 @@ export async function handleSsrRequest(astroContext: AstroGlobal) {
 
 	const getServerRouter = () => router
 
+	console.log(astroContext.request.url)
+
 	const handler = createRequestHandler({
 		request: new Request(
 			astroContext.request.url.replace('.html', ''),

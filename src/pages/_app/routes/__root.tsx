@@ -28,48 +28,109 @@ function Component() {
 							<Link className='text-blue-500' to='/ssg'>
 								With hydration
 							</Link>{' '}
-							/{' '}
+							(
+							<Link className='text-blue-500' to='/ssg' reloadDocument>
+								Reload
+							</Link>
+							) /{' '}
+							<Link className='text-blue-500' to='/ssg/no-hydration'>
+								No hydration
+							</Link>{' '}
+							(
 							<Link
 								className='text-blue-500'
-								to='/ssg-no-hydration'
+								to='/ssg/no-hydration'
 								reloadDocument
 							>
-								No hydration
+								Reload
 							</Link>
+							)
 						</div>
 					</div>
 
 					<div>
 						<h3 className='font-bold'>Server-side rendered</h3>
 						<div>
-							<Link className='text-blue-500' to='/login-ssr'>
+							<Link className='text-blue-500' to='/ssr/login'>
 								Login
 							</Link>{' '}
-							/{' '}
-							<Link className='text-blue-500' to='/profile-ssr'>
+							(
+							<Link className='text-blue-500' to='/ssr/login' reloadDocument>
+								Reload
+							</Link>
+							) /{' '}
+							<Link className='text-blue-500' to='/ssr/profile'>
 								Profile
 							</Link>{' '}
-							/{' '}
+							(
+							<Link className='text-blue-500' to='/ssr/profile' reloadDocument>
+								Reload
+							</Link>
+							) /{' '}
+							<Link className='text-blue-500' to='/ssr/no-hydration'>
+								No hydration
+							</Link>{' '}
+							(
 							<Link
 								className='text-blue-500'
-								to='/ssr-no-hydration'
+								to='/ssr/no-hydration'
 								reloadDocument
 							>
-								No hydration
+								Reload
 							</Link>
+							)
 						</div>
 					</div>
 
 					<div>
 						<h3 className='font-bold'>Client-side rendered</h3>
 						<div>
-							<Link className='text-blue-500' to='/login'>
+							<Link className='text-blue-500' to='/csr/login'>
 								Login
 							</Link>{' '}
-							/{' '}
-							<Link className='text-blue-500' to='/profile'>
-								Profile
+							(
+							<Link className='text-blue-500' to='/csr/login' reloadDocument>
+								Reload
 							</Link>
+							) /{' '}
+							<Link className='text-blue-500' to='/csr/profile'>
+								Profile
+							</Link>{' '}
+							(
+							<Link className='text-blue-500' to='/csr/profile' reloadDocument>
+								Reload
+							</Link>
+							)
+						</div>
+					</div>
+
+					<div>
+						<h3 className='font-bold'>Client-side rendered via URL rewrite</h3>
+						<div>
+							<Link className='text-blue-500' to='/rewrite/login'>
+								Login
+							</Link>{' '}
+							(
+							<Link
+								className='text-blue-500'
+								to='/rewrite/login'
+								reloadDocument
+							>
+								Reload
+							</Link>
+							) /{' '}
+							<Link className='text-blue-500' to='/rewrite/profile'>
+								Profile
+							</Link>{' '}
+							(
+							<Link
+								className='text-blue-500'
+								to='/rewrite/profile'
+								reloadDocument
+							>
+								Reload
+							</Link>
+							)
 						</div>
 					</div>
 				</div>
