@@ -168,7 +168,7 @@ function Component() {
 							rel='noopener noreferrer'
 							target='_blank'
 						>
-							Link
+							- GitHub
 						</a>
 					</div>
 				</div>
