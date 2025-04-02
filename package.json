@@ -8,7 +8,6 @@
 		"dev": "astro dev"
 	},
 	"dependencies": {
-		"@tanstack/react-form": "1.2.4",
 		"@tanstack/react-query": "5.71.3",
 		"@tanstack/react-query-devtools": "5.71.3",
 		"@tanstack/react-router": "1.114.32",

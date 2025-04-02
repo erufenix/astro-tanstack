@@ -37,6 +37,8 @@ export function createAppRouter(astroContext?: AstroGlobal) {
 
 		defaultPreloadGcTime: 0,
 		defaultPreloadStaleTime: 0,
+
+		defaultPreload: 'intent',
 	})
 }
 

@@ -16,7 +16,7 @@ function Component() {
 
 	return (
 		<div>
-			<div>Server-side rendered</div>
+			<div>Server-side rendered, no hydration</div>
 			<pre>{JSON.stringify(data, null, 2)}</pre>
 		</div>
 	)
