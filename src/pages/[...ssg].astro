@@ -5,6 +5,7 @@ import RootLayout from './_layout.astro'
 
 export async function getStaticPaths() {
   return [
+    { params: { ssg: undefined } },
     { params: { ssg: 'ssg' } },
     { params: { ssg: 'ssg/no-hydration' } },
   ]

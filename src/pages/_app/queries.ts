@@ -60,7 +60,7 @@ export const dataQueries = {
 					}
 				}
 			},
-			// longer stale time for pre-rendered pages, otherwise it will be immediately stale on the client
+			// longer stale time for pre-rendered pages, otherwise it will be immediately stale and refetched on the client
 			staleTime: 24 * 60 * 60 * 1_000,
 		}),
 

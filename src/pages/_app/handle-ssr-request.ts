@@ -8,8 +8,6 @@ export async function handleSsrRequest(astroContext: AstroGlobal) {
 
 	const getServerRouter = () => router
 
-	console.log(astroContext.request.url)
-
 	const handler = createRequestHandler({
 		request: new Request(
 			astroContext.request.url.replace('.html', ''),
@@ -18,7 +16,8 @@ export async function handleSsrRequest(astroContext: AstroGlobal) {
 		createRouter: getServerRouter,
 	})
 
-	// trigger the handler, which loads the router for SSR
+	// request handler, which loads the router for SSR
+	// when TanStack Router's redirect is thrown, return redirect response
 	// ref: https://github.com/TanStack/router/blob/main/packages/react-start-server/src/defaultRenderHandler.tsx
 	const response = await handler(({ router, responseHeaders, request }) => {
 		if (router.state.redirect) {

@@ -1,1 +1,1 @@
-/rewrite/* / 200
+/rewrite/* /rewrite 200

@@ -3,7 +3,7 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { dataQueries } from '~/pages/_app/queries'
 
-export const Route = createFileRoute('/ssg/no-hydration')({
+export const Route = createFileRoute('/ssg_/no-hydration')({
 	loader: async ({ context: { astroContext, queryClient } }) => {
 		await queryClient.ensureQueryData(dataQueries.prerender(astroContext))
 	},

@@ -16,7 +16,7 @@ Build Single Page Application (SPA) with Astro, TanStack Router and Query.
 
 ## Routes
 
-The POC demonstrates several different rendering strategies made possible by Astro:
+The POC demonstrates Astro's different rendering and hydration strategies when it comes to building a SPA with TanStack Router:
 
 ### Pre-rendered
 
@@ -54,9 +54,13 @@ Client-side redirect on protected routes.
 
 Classic client-side SPA, where all routes are served by the same page.
 
-For production, different hosting providers will have different ways to set up rewrite/proxying. This demo is using Cloudflare Pages, and rewrite is configured in `public/_redirects`:
+Client-side redirect on protected routes.
 
-- Entry: `pages/index.astro`
+For production, different hosting providers will have different ways to set up rewrite rules. This demo is using Cloudflare Pages, and rewrite rules are configured in `public/_redirects`.
+
+For other providers, please refer to [Create React App's documentation](https://create-react-app.dev/docs/deployment).
+
+- Entry: `pages/rewrite.astro`
 - Routes:
   - `/rewrite/login`
   - `/rewrite/profile`
