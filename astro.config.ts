@@ -1,13 +1,12 @@
-import react from '@astrojs/react'
-import { TanStackRouterVite } from '@tanstack/router-plugin/vite'
-import { defineConfig } from 'astro/config'
-
-import cloudflare from '@astrojs/cloudflare'
+import cloudflare from "@astrojs/cloudflare";
+import react from "@astrojs/react";
+import { tanstackRouter } from "@tanstack/router-plugin/vite";
+import { defineConfig } from "astro/config";
 
 export default defineConfig({
 	adapter: cloudflare(),
 	build: {
-		format: 'file',
+		format: "file",
 	},
 	devToolbar: {
 		enabled: false,
@@ -15,32 +14,41 @@ export default defineConfig({
 	integrations: [
 		react({
 			babel: {
-				plugins: [['babel-plugin-react-compiler', {}]],
+				plugins: [["babel-plugin-react-compiler", {}]],
 			},
 		}),
 	],
 	prefetch: {
-		defaultStrategy: 'hover',
+		defaultStrategy: "hover",
 		prefetchAll: true,
 	},
-	trailingSlash: 'never',
+	trailingSlash: "never",
 	vite: {
+		build: {
+			rollupOptions: {
+				external: [
+					"tanstack-start-manifest:v",
+					"tanstack-start-route-tree:v",
+					"tanstack-start-server-fn-manifest:v",
+				],
+			},
+		},
 		plugins: [
-			TanStackRouterVite({
-				target: 'react',
+			tanstackRouter({
+				target: "react",
 				autoCodeSplitting: true,
-				routesDirectory: 'src/pages/_app/routes',
-				generatedRouteTree: 'src/pages/_app/routeTree.gen.ts',
-				routeFileIgnorePrefix: '-',
-				quoteStyle: 'single',
+				routesDirectory: "src/pages/_app/routes",
+				generatedRouteTree: "src/pages/_app/routeTree.gen.ts",
+				routeFileIgnorePrefix: "-",
+				quoteStyle: "single",
 			}),
 		],
 		resolve: {
 			alias: {
-				...(process.env.NODE_ENV === 'production' && {
-					'react-dom/server': 'react-dom/server.edge',
+				...(process.env.NODE_ENV === "production" && {
+					"react-dom/server": "react-dom/server.edge",
 				}),
 			},
 		},
 	},
-})
+});
