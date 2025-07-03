@@ -1,6 +1,5 @@
 import { RouterProvider } from '@tanstack/react-router'
-import { StartClient } from '@tanstack/react-start/client'
-
+import { RouterClient } from '@tanstack/react-router/ssr/client'
 import { type AppRouter, createAppRouter } from './router'
 
 let clientRouter: AppRouter | undefined
@@ -21,6 +20,6 @@ export function AppEntry({
 	) : import.meta.env.SSR ? (
 		<RouterProvider router={getServerRouter!()} />
 	) : (
-		<StartClient router={clientRouter!} />
+		<RouterClient router={clientRouter!} />
 	)
 }
