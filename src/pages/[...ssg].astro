@@ -11,9 +11,10 @@ export async function getStaticPaths() {
   ]
 }
 
-const { response, getServerRouter, scriptHtml } = await handleSsrRequest(Astro)
+const { redirectResponse, getServerRouter, scriptHtml } =
+  await handleSsrRequest(Astro)
 
-if (response) return response
+if (redirectResponse) return redirectResponse
 
 
 const shouldNotHydrate = Astro.url.pathname

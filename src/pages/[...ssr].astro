@@ -5,9 +5,10 @@ import RootLayout from './_layout.astro'
 
 export const prerender = false
 
-const { response, getServerRouter, scriptHtml } = await handleSsrRequest(Astro)
+const { redirectResponse, getServerRouter, scriptHtml } =
+  await handleSsrRequest(Astro)
 
-if (response) return response
+if (redirectResponse) return redirectResponse
 
 const shouldNotHydrate = Astro.url.pathname
   .replace('.html', '')

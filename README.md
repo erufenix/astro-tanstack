@@ -9,11 +9,11 @@ Build Single Page Application (SPA) with Astro, TanStack Router and Query.
 
 - [`astro.config.ts`](astro.config.ts) - Astro configuration
 - [`src/pages/*.astro`](src/pages) - Astro pages
-- [`src/_app/handle-ssr-request.ts`](src/_app/handle-ssr-request.ts) - load TanStack Router on the server
-- [`src/_app/entry.tsx`](src/_app/entry.tsx) - SPA entry point
-- [`src/_app/routes`](src/_app/routes) - SPA routes
-- [`src/_app/router.ts`](src/_app/router.ts) - TanStack Router configuration
-- [`src/_app/queries`](src/_app/queries) - server and client data fetching using Astro endpoints/actions (feat TanStack Query)
+- [`src/pages/_app/handle-ssr-request.ts`](src/pages/_app/handle-ssr-request.ts) - load TanStack Router on the server
+- [`src/pages/_app/entry.tsx`](src/pages/_app/entry.tsx) - SPA entry point
+- [`src/pages/_app/routes`](src/pages/_app/routes) - SPA routes
+- [`src/pages/_app/router.ts`](src/pages/_app/router.ts) - TanStack Router configuration
+- [`src/pages/_app/queries`](src/pages/_app/queries) - server and client data fetching using Astro endpoints/actions (feat TanStack Query)
 
 ## Routes
 
@@ -23,7 +23,7 @@ The POC demonstrates Astro's different rendering and hydration strategies when i
 
 Generated at build time, optional hydration with Astro's `client:load` directive.
 
-- Entry: `pages/[...ssg].astro`
+- Entry: [`src/pages/[...ssg].astro`](src/pages/[...ssg].astro)`
 - Routes:
   - `/ssg`
   - `/ssg/no-hydration`
@@ -34,7 +34,7 @@ Generated on demand with `export const prerender = false`, optional hydration wi
 
 Server-side redirect on protected routes.
 
-- Entry: `pages/[...ssr].astro`
+- Entry: [`src/pages/[...ssr].astro`](src/pages/[...ssr].astro)`
 - Routes:
   - `/ssr/login`
   - `/ssr/profile`
@@ -46,7 +46,7 @@ Client-only rendering with Astro's `client:only` directive.
 
 Client-side redirect on protected routes.
 
-- Entry: `pages/[...csr].astro`
+- Entry: [`src/pages/[...csr].astro`](src/pages/[...csr].astro)`
 - Routes:
   - `/csr/login`
   - `/csr/profile`
@@ -61,7 +61,7 @@ For production, different hosting providers will have different ways to set up r
 
 For other providers, please refer to [Create React App's documentation](https://create-react-app.dev/docs/deployment).
 
-- Entry: `pages/rewrite.astro`
+- Entry: [`src/pages/rewrite.astro`](src/pages/rewrite.astro)`
 - Routes:
   - `/rewrite/login`
   - `/rewrite/profile`
