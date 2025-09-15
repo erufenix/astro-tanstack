@@ -1,4 +1,4 @@
-import { Outlet, createFileRoute, redirect } from '@tanstack/react-router'
+import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
 
 import { authQueries } from '~/pages/_app/queries'
 import { tryCatch } from '~/pages/_app/try-catch'

@@ -8,27 +8,30 @@
 		"dev": "astro dev"
 	},
 	"dependencies": {
-		"@tanstack/react-query": "5.81.5",
-		"@tanstack/react-query-devtools": "5.81.5",
-		"@tanstack/react-router": "1.124.0",
-		"@tanstack/react-router-devtools": "1.124.0",
-		"astro": "5.10.2",
-		"react": "19.1.0",
-		"react-dom": "19.1.0"
+		"@tanstack/query-db-collection": "0.2.16",
+		"@tanstack/react-db": "0.1.17",
+		"@tanstack/react-query": "5.87.4",
+		"@tanstack/react-query-devtools": "5.87.4",
+		"@tanstack/react-router": "1.131.41",
+		"@tanstack/react-router-devtools": "1.131.42",
+		"@tanstack/react-router-ssr-query": "1.131.41",
+		"astro": "5.13.7",
+		"react": "19.1.1",
+		"react-dom": "19.1.1"
 	},
 	"devDependencies": {
-		"@astrojs/cloudflare": "12.6.0",
-		"@astrojs/react": "4.3.0",
-		"@biomejs/biome": "2.0.6",
-		"@tailwindcss/postcss": "4.1.11",
-		"@tanstack/router-plugin": "1.124.0",
-		"@types/node": "24.0.10",
-		"@types/react": "19.1.8",
-		"@types/react-dom": "19.1.6",
-		"babel-plugin-react-compiler": "19.1.0-rc.2",
+		"@astrojs/cloudflare": "12.6.8",
+		"@astrojs/react": "4.3.1",
+		"@biomejs/biome": "2.2.4",
+		"@tailwindcss/postcss": "4.1.13",
+		"@tanstack/router-plugin": "1.131.43",
+		"@types/node": "24.3.3",
+		"@types/react": "19.1.13",
+		"@types/react-dom": "19.1.9",
+		"babel-plugin-react-compiler": "19.1.0-rc.3",
 		"postcss": "8.5.6",
-		"tailwindcss": "4.1.11",
-		"typescript": "5.8.3",
-		"wrangler": "4.22.0"
+		"tailwindcss": "4.1.13",
+		"typescript": "5.9.2",
+		"wrangler": "4.36.0"
 	}
 }

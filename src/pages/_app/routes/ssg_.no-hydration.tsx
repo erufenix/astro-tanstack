@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
 
 import { dataQueries } from '~/pages/_app/queries'
+import { formatDateFromTimestamp } from '~/pages/_app/utils'
 
 export const Route = createFileRoute('/ssg_/no-hydration')({
 	loader: async ({ context: { astroContext, queryClient } }) => {
@@ -16,8 +17,8 @@ function Component() {
 
 	return (
 		<div>
-			<div>Pre-rendered, no hydration</div>
-			<pre>{JSON.stringify(data, null, 2)}</pre>
+			<strong>Pre-rendered, no hydration</strong>
+			<p>Generated at {formatDateFromTimestamp(data!.timestamp)}</p>
 		</div>
 	)
 }

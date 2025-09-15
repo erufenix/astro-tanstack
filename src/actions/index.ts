@@ -31,13 +31,9 @@ export const server = {
 		},
 	}),
 	getData: defineAction({
-		handler: async (_, context) => {
+		handler: async (_, _context) => {
 			return {
 				timestamp: Date.now(),
-				data: [
-					{ id: 1, name: 'Product 1' },
-					{ id: 2, name: 'Product 2' },
-				],
 			}
 		},
 	}),

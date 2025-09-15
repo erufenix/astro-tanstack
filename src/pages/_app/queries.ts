@@ -50,13 +50,11 @@ export const dataQueries = {
 					const res = await GET(astroContext!)
 					return (await res.json()) as {
 						timestamp: number
-						data: Array<{ id: number; name: string }>
 					}
 				} else {
 					const res = await fetch('/api/data')
 					return (await res.json()) as {
 						timestamp: number
-						data: Array<{ id: number; name: string }>
 					}
 				}
 			},
