@@ -5,7 +5,8 @@
 	"type": "module",
 	"scripts": {
 		"build": "astro build",
-		"dev": "astro dev"
+		"dev": "astro dev",
+		"preview": "astro preview"
 	},
 	"dependencies": {
 		"@tanstack/query-db-collection": "0.2.16",
