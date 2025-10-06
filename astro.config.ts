@@ -1,10 +1,15 @@
-import cloudflare from '@astrojs/cloudflare'
+
 import react from '@astrojs/react'
 import { tanstackRouter } from '@tanstack/router-plugin/vite'
 import { defineConfig } from 'astro/config'
+import node from '@astrojs/node';
+
 
 export default defineConfig({
-	adapter: cloudflare(),
+	//adapter: cloudflare(),
+	adapter: node({
+    mode: 'standalone' // Modo standalone para producción
+  }),
 	build: {
 		format: 'file',
 	},
